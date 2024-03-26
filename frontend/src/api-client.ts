@@ -59,3 +59,23 @@ export const signOut = async () =>{
         throw new Error("Error during sign out");
     }
 };
+
+  export const addMyHotel = async (hotelFormData: FormData) => {
+    const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+        // mode:'no-cors',
+        method: "POST",
+        credentials: "include",
+        // headers : {
+        //     "Access-Control-Allow-Headers": "*",
+        //     "Access-Control-Allow-Origin": "*",
+        //     "Access-Control-Allow-Methods": "*"      
+        // },
+        body: hotelFormData,
+    });
+  
+    if (!response.ok) {
+      throw new Error("Failed to add hotel");
+    }
+  
+    return response.json();
+  };

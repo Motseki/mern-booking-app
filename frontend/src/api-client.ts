@@ -1,3 +1,4 @@
+import { HotelType } from './../../backend/src/shared/types';
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 
@@ -62,14 +63,8 @@ export const signOut = async () =>{
 
   export const addMyHotel = async (hotelFormData: FormData) => {
     const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
-        // mode:'no-cors',
         method: "POST",
         credentials: "include",
-        // headers : {
-        //     "Access-Control-Allow-Headers": "*",
-        //     "Access-Control-Allow-Origin": "*",
-        //     "Access-Control-Allow-Methods": "*"      
-        // },
         body: hotelFormData,
     });
   
@@ -77,5 +72,17 @@ export const signOut = async () =>{
       throw new Error("Failed to add hotel");
     }
   
+    return response.json();
+  };
+
+  export const fetchMyHotels = async (): Promise<HotelType[]> => {
+    const response = await fetch(`${API_BASE_URL}/api/my-hotels`, {
+        credentials: "include"
+    });
+
+    if (!response.ok) {
+        throw new Error("Error fetching hotels");
+    }
+
     return response.json();
   };

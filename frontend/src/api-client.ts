@@ -1,6 +1,7 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 import {
+  HotelSearchResponse,
   // HotelSearchResponse,
   HotelType,
   // PaymentIntentResponse,

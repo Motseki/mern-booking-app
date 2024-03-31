@@ -4,19 +4,19 @@ import {
   HotelSearchResponse,
   HotelType,
   PaymentIntentResponse,
-   UserType,
+  UserType,
 } from "../../backend/src/shared/types";
 import { BookingFormData } from "./forms/BookingForm/BookingForm";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const fetchCurrentUser = async (): Promise<UserType> => {
-   const response = await fetch(`${API_BASE_URL}/api/users/me`, {
-     credentials: "include",
-   });
-   if (!response.ok) {
-     throw new Error("Error fetching user");
-   }
-   return response.json();
+  const response = await fetch(`${API_BASE_URL}/api/users/me`, {
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Error fetching user");
+  }
+  return response.json();
 };
 
 export const register = async (formData: RegisterFormData) => {
@@ -146,34 +146,35 @@ export type SearchParams = {
 };
 
 export const searchHotels = async (
-   searchParams: SearchParams
- ): Promise<HotelSearchResponse> => {
-   const queryParams = new URLSearchParams();
-   queryParams.append("destination", searchParams.destination || "");
-   queryParams.append("checkIn", searchParams.checkIn || "");
-   queryParams.append("checkOut", searchParams.checkOut || "");
-   queryParams.append("adultCount", searchParams.adultCount || "");
-   queryParams.append("childCount", searchParams.childCount || "");
-   queryParams.append("page", searchParams.page || "");
+  searchParams: SearchParams
+): Promise<HotelSearchResponse> => {
+  const queryParams = new URLSearchParams();
+  queryParams.append("destination", searchParams.destination || "");
+  queryParams.append("checkIn", searchParams.checkIn || "");
+  queryParams.append("checkOut", searchParams.checkOut || "");
+  queryParams.append("adultCount", searchParams.adultCount || "");
+  queryParams.append("childCount", searchParams.childCount || "");
+  queryParams.append("page", searchParams.page || "");
 
-   queryParams.append("maxPrice", searchParams.maxPrice || "");
-   queryParams.append("sortOption", searchParams.sortOption || "");
-   searchParams.facilities?.forEach((facility) =>
-     queryParams.append("facilities", facility)
-   );
+  queryParams.append("maxPrice", searchParams.maxPrice || "");
+  queryParams.append("sortOption", searchParams.sortOption || "");
 
-   searchParams.types?.forEach((type) => queryParams.append("types", type));
-   searchParams.stars?.forEach((star) => queryParams.append("stars", star));
+  searchParams.facilities?.forEach((facility) =>
+    queryParams.append("facilities", facility)
+  );
 
-   const response = await fetch(
-     `${API_BASE_URL}/api/hotels/search?${queryParams}`
-   );
+  searchParams.types?.forEach((type) => queryParams.append("types", type));
+  searchParams.stars?.forEach((star) => queryParams.append("stars", star));
 
-   if (!response.ok) {
-     throw new Error("Error fetching hotels");
-   }
+  const response = await fetch(
+    `${API_BASE_URL}/api/hotels/search?${queryParams}`
+  );
 
-   return response.json();
+  if (!response.ok) {
+    throw new Error("Error fetching hotels");
+  }
+
+  return response.json();
 };
 
 export const fetchHotels = async (): Promise<HotelType[]> => {
@@ -193,46 +194,46 @@ export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
   return response.json();
 };
 
- export const createPaymentIntent = async (
-   hotelId: string,
-   numberOfNights: string
- ): Promise<PaymentIntentResponse> => {
-   const response = await fetch(
-     `${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
-     {
-       credentials: "include",
-       method: "POST",
-       body: JSON.stringify({ numberOfNights }),
-       headers: {
-         "Content-Type": "application/json",
-       },
-     }
-   );
+export const createPaymentIntent = async (
+  hotelId: string,
+  numberOfNights: string
+): Promise<PaymentIntentResponse> => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/hotels/${hotelId}/bookings/payment-intent`,
+    {
+      credentials: "include",
+      method: "POST",
+      body: JSON.stringify({ numberOfNights }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
-   if (!response.ok) {
-     throw new Error("Error fetching payment intent");
-   }
+  if (!response.ok) {
+    throw new Error("Error fetching payment intent");
+  }
 
-   return response.json();
- };
+  return response.json();
+};
 
- export const createRoomBooking = async (formData: BookingFormData) => {
-   const response = await fetch(
-     `${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`,
-     {
-       method: "POST",
-       headers: {
-         "Content-Type": "application/json",
-       },
-       credentials: "include",
-       body: JSON.stringify(formData),
-     }
-   );
+export const createRoomBooking = async (formData: BookingFormData) => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/hotels/${formData.hotelId}/bookings`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(formData),
+    }
+  );
 
-   if (!response.ok) {
-     throw new Error("Error booking room");
-   }
- };
+  if (!response.ok) {
+    throw new Error("Error booking room");
+  }
+};
 
 export const fetchMyBookings = async (): Promise<HotelType[]> => {
   const response = await fetch(`${API_BASE_URL}/api/my-bookings`, {

@@ -19,7 +19,7 @@ const MyBookings = () => {
           <div className="lg:w-full lg:h-[250px]">
             <img
               src={hotel.imageUrls[0]}
-              className="w-full h-full object-cover object-center" alt=""
+              className="object-cover object-center w-full h-full" alt=""
             />
           </div>
           <div className="flex flex-col gap-4 overflow-y-auto max-h-[300px]">
@@ -32,14 +32,14 @@ const MyBookings = () => {
             {hotel.bookings.map((booking) => (
               <div>
                 <div>
-                  <span className="font-bold mr-2">Dates: </span>
+                  <span className="mr-2 font-bold">Dates: </span>
                   <span>
                     {new Date(booking.checkIn).toDateString()} -
                     {new Date(booking.checkOut).toDateString()}
                   </span>
                 </div>
                 <div>
-                  <span className="font-bold mr-2">Guests:</span>
+                  <span className="mr-2 font-bold">Guests:</span>
                   <span>
                     {booking.adultCount} adults, {booking.childCount} children
                   </span>

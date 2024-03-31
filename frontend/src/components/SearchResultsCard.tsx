@@ -11,7 +11,7 @@ const SearchResultsCard = ({ hotel }: Props) => {
       <div className="w-full h-[300px]">
         <img
           src={hotel.imageUrls[0]}
-          className="w-full h-full object-cover object-center" alt=""
+          className="object-cover object-center w-full h-full" alt=""
         />
       </div>
       <div className="grid grid-rows-[1fr_2fr_1fr]">
@@ -36,10 +36,10 @@ const SearchResultsCard = ({ hotel }: Props) => {
           <div className="line-clamp-4">{hotel.description}</div>
         </div>
 
-        <div className="grid grid-cols-2 items-end whitespace-nowrap">
-          <div className="flex gap-1 items-center">
+        <div className="grid items-end grid-cols-2 whitespace-nowrap">
+          <div className="flex items-center gap-1">
             {hotel.facilities.slice(0, 3).map((facility) => (
-              <span className="bg-slate-300 p-2 rounded-lg font-bold text-xs whitespace-nowrap">
+              <span className="p-2 text-xs font-bold rounded-lg bg-slate-300 whitespace-nowrap">
                 {facility}
               </span>
             ))}
@@ -52,7 +52,7 @@ const SearchResultsCard = ({ hotel }: Props) => {
             <span className="font-bold">£{hotel.pricePerNight} per night</span>
             <Link
               to={`/detail/${hotel._id}`}
-              className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit hover:bg-blue-500"
+              className="h-full p-2 text-xl font-bold text-white bg-blue-600 max-w-fit hover:bg-blue-500"
             >
               View More
             </Link>

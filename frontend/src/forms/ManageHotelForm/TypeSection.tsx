@@ -13,7 +13,7 @@ const TypeSection = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-3">Type</h2>
+      <h2 className="mb-3 text-2xl font-bold">Type</h2>
       <div className="grid grid-cols-5 gap-2">
         {hotelTypes.map((type) => (
           <label
@@ -36,7 +36,7 @@ const TypeSection = () => {
         ))}
       </div>
       {errors.type && (
-        <span className="text-red-500 text-sm font-bold">
+        <span className="text-sm font-bold text-red-500">
           {errors.type.message}
         </span>
       )}
@@ -45,5 +45,3 @@ const TypeSection = () => {
 };
 
 export default TypeSection;
-
-

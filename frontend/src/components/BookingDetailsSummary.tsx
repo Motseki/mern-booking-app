@@ -18,9 +18,9 @@ const BookingDetailsSummary = ({
   hotel,
 }: Props) => {
   return (
-    <div className="grid gap-4 rounded-lg border border-slate-300 p-5 h-fit">
+    <div className="grid gap-4 p-5 border rounded-lg border-slate-300 h-fit">
       <h2 className="text-xl font-bold">Your Booking Details</h2>
-      <div className="border-b py-2">
+      <div className="py-2 border-b">
         Location:
         <div className="font-bold">{`${hotel.name}, ${hotel.city}, ${hotel.country}`}</div>
       </div>
@@ -34,7 +34,7 @@ const BookingDetailsSummary = ({
           <div className="font-bold"> {checkOut.toDateString()}</div>
         </div>
       </div>
-      <div className="border-t border-b py-2">
+      <div className="py-2 border-t border-b">
         Total length of stay:
         <div className="font-bold">{numberOfNights} nights</div>
       </div>

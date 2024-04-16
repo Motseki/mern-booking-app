@@ -1,1 +1,3 @@
 # mern-booking-app
+
+## Technologies
